@@ -681,7 +681,11 @@ async function activate() {
   try {
     const res = await fetch(SUPABASE_URL + '/functions/v1/verify-activation', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+      },
       body: JSON.stringify({ code: input, device: device }),
     });
     const data = await res.json();
