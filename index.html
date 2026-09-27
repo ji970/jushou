@@ -697,7 +697,8 @@ async function activate() {
       updateStatus();
       initApp();
     } else {
-      errEl.textContent = (data && data.error) || '激活失败';
+      var errMap = { invalid: '激活码无效', expired: '激活码已过期', device: '此激活码已在其他设备使用', server: '服务器错误' };
+      errEl.textContent = (data && data.error && errMap[data.error]) || '激活失败';
       btn.disabled = false; btn.textContent = '激活';
     }
   } catch(e) {
