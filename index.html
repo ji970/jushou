@@ -2218,6 +2218,7 @@ function cancelTimer(resId, cloneSlot) {
 function resetAll() {
   if (confirm('确定要重置所有计时吗？')) {
     localStorage.removeItem(STORAGE_KEY);
+    try { if (typeof plus !== 'undefined' && plus.storage) { plus.storage.removeItem(STORAGE_KEY); } } catch(e) {}
     closeAllPopups();
     renderCards();
     if (isNativeApp()) cancelAllNativeAlarms();
